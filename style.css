@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.904);
+    font-family: sans-serif;
+}
+
+body {
+    color: aliceblue;
+    background-color: rgb(0, 0, 0);
+    margin: 0;
+    padding-bottom: 50px; /* Padding for footer */
+}
+
+a {
+    display: flex;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    justify-content: center;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 1000px;
+    position: sticky;
+    top: 0;
+    right: 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 100px;
+    font-family: 'Didot Bondoni', serif;
+    font-weight: 1000;
+    font-style: italic;
+    padding: 50px;
+    margin-left: 20px; /* Adjusted from center */
+}
+
+h1 {
+    font-family: 'Didot Bondoni', serif;
+    color: rgb(4, 120, 165);
+    text-align: center;
+}
+
+.know {
+    padding: 20px;
+    text-align: center;
+}
+
+.AboutMe {
+    background-color: rgba(0, 0, 0, 0.683);
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.MyProjects {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.projectsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    width: 250px;
+    height: 300px;
+    background-color: #333;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.cardContent {
+    padding: 20px;
+    text-align: center;
+}
+
+.cardContent > .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: rgb(170, 170, 170);
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+.socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socialIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.socialIcon:hover {
+    transform: scale(1.1);
+}

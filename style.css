@@ -22,13 +22,6 @@ a {
     max-width: 1000px;
     position: sticky;
     top: 0;
-    * {
-        box-sizing: border-box;
-        color: aliceblue;
-        background-color: rgba(0, 0, 0, 0.904);
-        font-family: sans-serif;
-    }
-
     right: 0;
 }
 
@@ -36,14 +29,12 @@ a:hover {
     text-decoration: underline;
 }
 
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-        background: #101624;
-        color: #eaf1fb;
-        min-height: 100vh;
-    }
+.logo {
+    font-size: 100px;
+    font-family: 'Didot Bondoni', serif;
+    font-weight: 1000;
+    font-style: italic;
+    padding: 50px;
     margin-left: 20px; /* Adjusted from center */
 }
 
@@ -56,110 +47,6 @@ h1 {
 .know {
     padding: 20px;
     text-align: center;
-}
-.portfolio-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-.left-panel {
-    position: relative;
-    width: 40vw;
-    min-width: 320px;
-    background: #0a0e18;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-shadow: 2px 0 24px 0 #0008;
-}
-
-.terminal-bg {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* FaultyTerminal React component should be rendered here in React version */
-    background: linear-gradient(135deg, #22304a 0%, #1a2333 100%);
-    opacity: 0.85;
-}
-
-.signature {
-    position: relative;
-    z-index: 2;
-    font-size: 7vw;
-    font-weight: 900;
-    color: #5080b4;
-    letter-spacing: -0.05em;
-    text-shadow: 0 8px 32px #000a, 0 2px 0 #22304a;
-    user-select: none;
-    font-family: 'Fira Mono', 'Consolas', monospace;
-    left: -0.5vw;
-    transition: color 0.3s;
-}
-
-.signature:hover {
-    color: #7fc7ff;
-}
-
-.right-panel {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(120deg, #18243a 0%, #22304a 100%);
-    box-shadow: -2px 0 24px 0 #0006;
-}
-
-.content {
-    max-width: 520px;
-    padding: 48px 32px;
-    background: rgba(16, 22, 36, 0.85);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px #0004;
-    backdrop-filter: blur(4px);
-}
-
-.content h1 {
-    font-size: 2.8rem;
-    margin: 0 0 0.5em 0;
-    font-weight: 800;
-    color: #7fc7ff;
-    letter-spacing: -0.02em;
-}
-
-.content h2 {
-    font-size: 1.5rem;
-    margin: 0 0 1.2em 0;
-    font-weight: 500;
-    color: #b0c7e8;
-}
-
-.content p {
-    font-size: 1.1rem;
-    color: #eaf1fb;
-    line-height: 1.7;
-}
-
-@media (max-width: 900px) {
-    .portfolio-container {
-        flex-direction: column;
-    }
-    .left-panel {
-        width: 100vw;
-        min-width: 0;
-        height: 220px;
-        box-shadow: none;
-    }
-    .signature {
-        font-size: 16vw;
-        left: 0;
-    }
-    .right-panel {
-        box-shadow: none;
-        min-height: 60vh;
-    }
 }
 
 .AboutMe {

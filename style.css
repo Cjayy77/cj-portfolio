@@ -1,3 +1,139 @@
+/* Skills Section */
+.skills-section {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+}
+.skill {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 1.08rem;
+    font-weight: 500;
+}
+.skill-bar {
+    flex: 1;
+    height: 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.skill-level {
+    height: 100%;
+    background: linear-gradient(90deg, #4ad6ff 0%, #222 100%);
+    border-radius: 8px;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+.testimonial {
+    background: rgba(255,255,255,0.04);
+    border-radius: 18px;
+    padding: 18px 22px;
+    margin: 18px 0;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    font-style: italic;
+    color: #e0e0e0;
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+.testimonial span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.98rem;
+    color: #4ad6ff;
+    font-style: normal;
+    font-weight: 500;
+}
+.testimonial:hover {
+    box-shadow: 0 4px 16px 0 #4ad6ff22;
+}
+/* Frosted glass effect for sections */
+.sections-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.frosted-section {
+    min-width: 350px;
+    max-width: 600px;
+    width: 45vw;
+    margin: 0 20px;
+    padding: 40px 30px 30px 30px;
+    border-radius: 30px;
+    background: rgba(30, 30, 30, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border: 1.5px solid rgba(255,255,255,0.13);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+    transform: translateX(60vw) scale(0.98);
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    pointer-events: none;
+}
+
+.frosted-section.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+    z-index: 2;
+}
+
+.about-section {
+    left: 0;
+}
+.projects-section {
+    left: 0;
+}
+
+.section-switcher {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.switch-btn {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: none;
+    border-radius: 18px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+    outline: none;
+}
+.switch-btn:hover, .switch-btn:focus {
+    background: rgba(255,255,255,0.18);
+    color: #4ad6ff;
+    transform: scale(1.06);
+}
 * {
     box-sizing: border-box;
     color: aliceblue;
@@ -29,13 +165,55 @@ a:hover {
     text-decoration: underline;
 }
 
+.hero-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
 .logo {
-    font-size: 100px;
-    font-family: 'Didot Bondoni', serif;
-    font-weight: 1000;
+    font-size: 110px;
+    font-family: 'Times New Roman', Times, serif;
     font-style: italic;
-    padding: 50px;
-    margin-left: 20px; /* Adjusted from center */
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    position: relative;
+    margin: 0;
+    padding: 0 30px 10px 30px;
+    text-align: center;
+    z-index: 2;
+}
+
+.logo-underline {
+    display: block;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #fff 60%, #222 100%);
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: -18px;
+    opacity: 0.25;
+    animation: underline-move 2.5s infinite alternate cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes underline-move {
+    0% { width: 60%; opacity: 0.18; }
+    100% { width: 100%; opacity: 0.32; }
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 400;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+    opacity: 0.85;
 }
 
 h1 {
@@ -60,28 +238,101 @@ h1 {
     text-align: center;
 }
 
+
 .projectsContainer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 32px;
+    padding: 32px 0 16px 0;
+    align-items: stretch;
 }
 
+
 .card {
-    width: 250px;
-    height: 300px;
-    background-color: #333;
-    border-radius: 15px;
+    width: 290px;
+    min-height: 340px;
+    background: rgba(30, 30, 30, 0.55);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 8px 0 rgba(0,0,0,0.10);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    position: relative;
+    border: 1.5px solid rgba(255,255,255,0.10);
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s cubic-bezier(.4,0,.2,1), border 0.35s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    animation: card-fade-in 0.9s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes card-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.045) translateY(-6px) rotateZ(-0.5deg);
+    box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.22), 0 2.5px 12px 0 rgba(0,0,0,0.13);
+    border: 1.5px solid #4ad6ff44;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle at 60% 40%, #4ad6ff33 0%, #0000 80%);
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    opacity: 0.7;
+}
+.card:hover::before {
+    opacity: 1;
+}
+
+.cardContent {
+    position: relative;
+    z-index: 2;
+    padding: 32px 24px 18px 24px;
+    text-align: left;
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cardContent > .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px #0008;
+}
+
+.background {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    background: linear-gradient(90deg, #222 60%, #4ad6ff22 100%);
+    filter: blur(0.5px) brightness(0.92);
+    z-index: 1;
+    position: relative;
+}
+
+.backdrop {
+    display: none;
 }
 
 .cardContent {
@@ -96,29 +347,46 @@ h1 {
 
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #222;
-    color: rgb(170, 170, 170);
+    padding: 32px 10px 18px 10px;
+    background: rgba(20, 20, 20, 0.98);
+    color: #bfc9d1;
+    border-top: 1.5px solid rgba(255,255,255,0.08);
+    font-size: 1.05rem;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fade-in-footer 1.2s 0.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes fade-in-footer {
+    to { opacity: 1; }
 }
 
 footer p {
-    margin: 10px 0;
+    margin: 12px 0 0 0;
+    font-size: 1rem;
+    letter-spacing: 0.2px;
+    color: #bfc9d1;
 }
 
 .socialLinks {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 22px;
+    margin-bottom: 8px;
 }
 
 .socialIcon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.13);
+    background: #fff;
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
+    border: 1.5px solid #4ad6ff22;
 }
-
 .socialIcon:hover {
-    transform: scale(1.1);
+    transform: scale(1.13) rotateZ(-2deg);
+    box-shadow: 0 4px 16px 0 #4ad6ff33;
+    border: 1.5px solid #4ad6ff88;
 }

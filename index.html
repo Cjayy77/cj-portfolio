@@ -156,7 +156,6 @@ nav.scrolled{
 .proj-img{overflow:hidden;position:relative;aspect-ratio:16/9}
 .proj-img-inner{position:absolute;inset:0;transition:transform 450ms ease}
 .proj-meta{padding:26px 28px 30px}
-@media (max-width:720px){.proj-card{flex:0 0 100%}}
 .proj-tag{
   font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--txt-dim);margin-bottom:10px;display:flex;align-items:center;gap:8px;
@@ -215,6 +214,35 @@ footer{
   display:flex;justify-content:space-between;align-items:center;
 }
 footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width:900px){
+  nav{padding:0 40px}
+  .nav-links{gap:28px}
+  #hero{padding:72px 40px 0}
+  #about{padding:120px 40px;grid-template-columns:1fr;gap:32px}
+  .about-sticky{position:static;top:auto}
+  #projects,#stack,#contact{padding:120px 40px}
+  footer{padding:24px 40px}
+  /* one project per view once cards get narrow */
+  .proj-card{flex:0 0 100%}
+}
+@media (max-width:560px){
+  nav{padding:0 22px;height:64px}
+  .nav-links{gap:18px}
+  .nav-links a{font-size:11px;letter-spacing:0.08em}
+  #hero{padding:64px 22px 0}
+  .hero-logo-wrap{margin-bottom:36px}
+  .hero-sub{margin-bottom:40px}
+  .hero-rule{margin-top:64px}
+  .hero-btns{flex-wrap:wrap}
+  #about,#projects,#stack,#contact{padding:88px 22px}
+  .lbl{margin-bottom:40px}
+  .proj-head{margin-bottom:40px}
+  .proj-meta{padding:22px 22px 26px}
+  .contact-sub{margin-bottom:40px}
+  footer{padding:22px;flex-direction:column;gap:8px;text-align:center}
+}
 </style>
 </head>
 <body>

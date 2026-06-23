@@ -127,18 +127,36 @@ nav.scrolled{
 
 /* ─── PROJECTS ───────────────────────────────────────── */
 #projects{padding:160px 80px;border-top:1px solid var(--border)}
-.proj-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;background:var(--border);border:1px solid var(--border);
+/* header row: section label + carousel controls */
+.proj-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:56px}
+.proj-head .lbl{margin-bottom:0}
+.proj-controls{display:flex;gap:10px}
+.proj-nav{
+  width:42px;height:42px;border:1px solid var(--border);background:transparent;
+  color:var(--txt-dim);font-size:15px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color 200ms,color 200ms,background 200ms;
 }
-.proj-card{background:var(--bg);overflow:hidden;transition:background 250ms;cursor:pointer}
+.proj-nav:hover:not(:disabled){border-color:var(--border-hi);color:var(--txt);background:var(--s-low)}
+.proj-nav:disabled{opacity:0.28;cursor:default}
+/* carousel — equal-weight cards, scroll-snapped */
+.proj-carousel{position:relative}
+.proj-track{
+  display:flex;gap:1px;background:var(--border);border:1px solid var(--border);
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.proj-track::-webkit-scrollbar{display:none}
+.proj-card{
+  flex:0 0 calc(50% - 0.5px);scroll-snap-align:start;
+  background:var(--bg);overflow:hidden;transition:background 250ms;cursor:pointer;
+}
 .proj-card:hover{background:var(--s-low)}
 .proj-card:hover .proj-img-inner{transform:scale(1.025)}
-.proj-card.wide{grid-column:1/-1}
-.proj-img{overflow:hidden;position:relative;aspect-ratio:16/8}
-.proj-card.wide .proj-img{aspect-ratio:16/6}
+.proj-img{overflow:hidden;position:relative;aspect-ratio:16/9}
 .proj-img-inner{position:absolute;inset:0;transition:transform 450ms ease}
 .proj-meta{padding:26px 28px 30px}
+@media (max-width:720px){.proj-card{flex:0 0 100%}}
 .proj-tag{
   font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--txt-dim);margin-bottom:10px;display:flex;align-items:center;gap:8px;
@@ -152,6 +170,14 @@ nav.scrolled{
   border-bottom:1px solid var(--border-hi);padding-bottom:2px;transition:gap 200ms;
 }
 .proj-link:hover{gap:14px}
+.proj-dots{display:flex;justify-content:center;gap:10px;margin-top:32px}
+.proj-dot{
+  width:7px;height:7px;border-radius:50%;padding:0;border:none;cursor:pointer;
+  background:var(--border-hi);opacity:0.5;
+  transition:opacity 200ms,transform 200ms,background 200ms;
+}
+.proj-dot:hover{opacity:0.85}
+.proj-dot.on{opacity:1;background:var(--txt);transform:scale(1.25)}
 
 /* ─── STACK ──────────────────────────────────────────── */
 #stack{padding:160px 80px;border-top:1px solid var(--border)}
@@ -258,11 +284,18 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
 
 <!-- ── PROJECTS ────────────────────────────────────────────── -->
 <section id="projects">
-  <div class="lbl reveal">Selected Work</div>
-  <div class="proj-grid">
+  <div class="proj-head reveal">
+    <div class="lbl">Selected Work</div>
+    <div class="proj-controls">
+      <button class="proj-nav prev" type="button" aria-label="Previous projects">&larr;</button>
+      <button class="proj-nav next" type="button" aria-label="Next projects">&rarr;</button>
+    </div>
+  </div>
+  <div class="proj-carousel reveal">
+    <div class="proj-track">
 
-    <!-- DOA — featured full width -->
-    <div class="proj-card wide reveal">
+    <!-- DOA -->
+    <div class="proj-card">
       <div class="proj-img" style="background:#0c1220">
         <div class="proj-img-inner">
           <svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -302,8 +335,8 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
       </div>
     </div>
 
-    <!-- TL;DR — featured full width -->
-    <div class="proj-card wide reveal">
+    <!-- TL;DR -->
+    <div class="proj-card">
       <div class="proj-img" style="background:#0d1710">
         <div class="proj-img-inner">
           <svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -368,7 +401,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     </div>
 
     <!-- GeoAttend -->
-    <div class="proj-card reveal">
+    <div class="proj-card">
       <div class="proj-img" style="background:#120f22">
         <div class="proj-img-inner">
           <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -404,7 +437,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     </div>
 
     <!-- Netflix Clone -->
-    <div class="proj-card reveal d1">
+    <div class="proj-card">
       <div class="proj-img" style="background:#1a0c0c">
         <div class="proj-img-inner">
           <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -438,7 +471,9 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
       </div>
     </div>
 
+    </div>
   </div>
+  <div class="proj-dots reveal" role="tablist" aria-label="Project slides"></div>
 </section>
 
 <!-- ── STACK ───────────────────────────────────────────────── -->
@@ -506,6 +541,42 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Projects carousel */
+const track    = document.querySelector('.proj-track');
+const dotsWrap = document.querySelector('.proj-dots');
+const prevBtn  = document.querySelector('.proj-nav.prev');
+const nextBtn  = document.querySelector('.proj-nav.next');
+
+const pageCount   = () => Math.max(1, Math.round(track.scrollWidth / track.clientWidth));
+const currentPage = () => Math.round(track.scrollLeft / track.clientWidth);
+
+function updateUI() {
+  const cur = currentPage();
+  [...dotsWrap.children].forEach((d, i) => d.classList.toggle('on', i === cur));
+  prevBtn.disabled = track.scrollLeft <= 2;
+  nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+}
+
+function buildDots() {
+  const n = pageCount();
+  dotsWrap.innerHTML = '';
+  for (let i = 0; i < n; i++) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'proj-dot';
+    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    dot.addEventListener('click', () => track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' }));
+    dotsWrap.appendChild(dot);
+  }
+  updateUI();
+}
+
+prevBtn.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }));
+nextBtn.addEventListener('click', () => track.scrollBy({ left:  track.clientWidth, behavior: 'smooth' }));
+track.addEventListener('scroll', () => requestAnimationFrame(updateUI), { passive: true });
+window.addEventListener('resize', buildDots);
+buildDots();
 </script>
 </body>
 </html>

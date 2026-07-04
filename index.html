@@ -18,6 +18,8 @@
   --txt-dim:#c4c7c8;
   --border:rgba(255,255,255,0.10);
   --border-hi:rgba(255,255,255,0.22);
+  /* shared blue accent (matches the hero rain) */
+  --accent:#09f;
   /* tinted section-seam line, echoing the hero rain */
   --seam:linear-gradient(90deg, rgba(0,153,255,0) 0%, rgba(0,153,255,0.5) 50%, rgba(0,153,255,0) 100%);
   --serif:'Libre Caslon Text',Georgia,serif;
@@ -52,14 +54,14 @@ nav.scrolled{
   font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--txt-dim);text-decoration:none;transition:color 200ms;
 }
-.nav-links a:hover{color:var(--txt)}
+.nav-links a:hover{color:#6cbcff}
 
 /* ─── SHARED ─────────────────────────────────────────── */
 .lbl{
   font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
   color:var(--txt-dim);display:flex;align-items:center;gap:14px;margin-bottom:56px;
 }
-.lbl::after{content:'';display:block;height:1px;width:36px;background:var(--border-hi)}
+.lbl::after{content:'';display:block;height:1px;width:36px;background:linear-gradient(90deg,var(--accent),rgba(0,153,255,0))}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 600ms ease,transform 600ms ease}
 .reveal.on{opacity:1;transform:none}
@@ -213,7 +215,7 @@ nav.scrolled{
   letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;
   transition:background 180ms,color 180ms,border-color 180ms;
 }
-.btn:hover{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.btn:hover{background:var(--accent);color:#08131f;border-color:var(--accent);box-shadow:0 0 24px rgba(0,153,255,0.25)}
 
 /* ─── ABOUT ──────────────────────────────────────────── */
 #about{padding:160px 80px;display:grid;grid-template-columns:220px 1fr;gap:80px;align-items:start}
@@ -230,7 +232,7 @@ nav.scrolled{
   color:var(--txt-dim);border:1px solid var(--border);padding:6px 12px;
   transition:border-color 200ms,color 200ms;
 }
-.chip:hover{border-color:var(--border-hi);color:var(--txt)}
+.chip:hover{border-color:rgba(0,153,255,0.6);color:var(--txt)}
 
 /* ─── PROJECTS ───────────────────────────────────────── */
 #projects{padding:160px 80px}
@@ -243,7 +245,7 @@ nav.scrolled{
   display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
   background:var(--bg);transition:background 250ms;
 }
-.proj-row:hover{background:var(--s-low)}
+.proj-row:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
 .proj-row:hover .proj-img-inner{transform:scale(1.03)}
 /* zig-zag: even rows put the image on the right */
 .proj-row:nth-child(even) .proj-img{grid-column:2;grid-row:1}
@@ -282,7 +284,7 @@ nav.scrolled{
   color:var(--txt);text-decoration:none;display:inline-flex;align-items:center;gap:8px;
   border-bottom:1px solid var(--border-hi);padding-bottom:2px;transition:gap 200ms;
 }
-.proj-link:hover{gap:14px}
+.proj-link:hover{gap:14px;border-bottom-color:var(--accent)}
 
 /* ─── STACK ──────────────────────────────────────────── */
 #stack{padding:160px 80px}
@@ -295,7 +297,7 @@ nav.scrolled{
   display:flex;flex-direction:column;align-items:center;gap:10px;
   transition:background 200ms;
 }
-.stack-item:hover{background:var(--s-low)}
+.stack-item:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
 .stack-glyph{
   font-family:var(--serif);font-size:19px;font-style:italic;font-weight:700;
   color:var(--txt);line-height:1;
@@ -312,7 +314,7 @@ nav.scrolled{
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
 .cred-col{background:var(--bg);padding:38px 34px 30px;transition:background 200ms}
-.cred-col:hover{background:var(--s-low)}
+.cred-col:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
 .cred-cat{
   font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--txt-dim);margin-bottom:22px;display:flex;align-items:center;gap:8px;

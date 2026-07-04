@@ -164,6 +164,24 @@ nav.scrolled{
 .proj-title{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.2;margin-bottom:10px;color:var(--txt)}
 .proj-desc{font-size:14px;color:var(--txt-dim);line-height:1.65;margin-bottom:20px}
 .proj-desc code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.85em;color:var(--txt);background:var(--s-mid);padding:1px 5px;border-radius:3px}
+.proj-install{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  max-width:280px;margin-bottom:20px;padding:8px 8px 8px 12px;
+  background:var(--s-mid);border:1px solid var(--border);border-radius:4px;
+}
+.proj-install code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--txt);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.proj-install code::before{content:'$ ';color:var(--txt-dim)}
+.proj-copy{
+  flex:none;font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--txt-dim);background:transparent;
+  border:1px solid var(--border);border-radius:3px;padding:4px 8px;cursor:pointer;
+  transition:color 200ms,border-color 200ms;
+}
+.proj-copy:hover{color:var(--txt);border-color:var(--border-hi)}
+.proj-copy.copied{color:#5cd08a;border-color:rgba(92,208,138,0.4)}
 .proj-link{
   font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;
   color:var(--txt);text-decoration:none;display:inline-flex;align-items:center;gap:8px;
@@ -475,6 +493,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
         <p class="proj-tag">Python · CLI · Local Voice AI</p>
         <h3 class="proj-title">Chuchote</h3>
         <p class="proj-desc">A local-first, hands-free voice assistant for Ollama models — wake-word activation, Whisper speech-to-text, Piper text-to-speech, and real-time barge-in. Runs entirely offline, with no cloud calls. Published on PyPI.</p>
+        <div class="proj-install"><code>pip install chuchote</code><button class="proj-copy" type="button" aria-label="Copy install command">Copy</button></div>
         <a href="https://github.com/Cjayy77/chuchote" class="proj-link">View Project →</a>
       </div>
     </div>
@@ -523,6 +542,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
         <p class="proj-tag">Python · CLI · DevOps Tooling</p>
         <h3 class="proj-title">Playcheck</h3>
         <p class="proj-desc">A CLI that turns <code>ansible-playbook --check --diff</code> into a readable, PR-postable preview — grouping changes by host, rendering clean diffs, and flagging tasks that silently can't be previewed. Published on PyPI.</p>
+        <div class="proj-install"><code>pip install playcheck</code><button class="proj-copy" type="button" aria-label="Copy install command">Copy</button></div>
         <a href="https://github.com/Cjayy77/Playcheck" class="proj-link">View Project →</a>
       </div>
     </div>
@@ -669,6 +689,17 @@ nextBtn.addEventListener('click', () => track.scrollBy({ left:  track.clientWidt
 track.addEventListener('scroll', () => requestAnimationFrame(updateUI), { passive: true });
 window.addEventListener('resize', buildDots);
 buildDots();
+
+/* Copy install command */
+document.querySelectorAll('.proj-copy').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const cmd = btn.previousElementSibling.textContent;
+    try { await navigator.clipboard.writeText(cmd); } catch (e) { /* clipboard unavailable */ }
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+  });
+});
 </script>
 </body>
 </html>

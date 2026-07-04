@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Work — Cedric Julien</title>
+<meta name="description" content="Selected projects, ranked — real-time graphics, local AI, developer tooling."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#131313;--s-low:#1c1b1b;--s-mid:#201f1f;--txt:#e5e2e1;--txt-dim:#c4c7c8;
+  --border:rgba(255,255,255,0.10);--border-hi:rgba(255,255,255,0.22);
+  --serif:'Libre Caslon Text',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+  --accent:#09f;
+  --seam:linear-gradient(90deg, rgba(0,153,255,0) 0%, rgba(0,153,255,0.5) 50%, rgba(0,153,255,0) 100%);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 80px;height:72px;background:rgba(13,13,13,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:block;line-height:0;text-decoration:none}
+.nav-logo svg{height:24px;width:auto}
+.nav-links{list-style:none;display:flex;gap:36px}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--txt-dim);text-decoration:none;transition:color 200ms}
+.nav-links a:hover{color:#6cbcff}
+.work-head{padding:150px 80px 60px}
+.lbl{font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--txt-dim);display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.lbl::after{content:'';display:block;height:1px;width:36px;background:linear-gradient(90deg,var(--accent),rgba(0,153,255,0))}
+.work-title-lg{font-family:var(--serif);font-size:clamp(34px,5vw,60px);font-weight:400;line-height:1.05;letter-spacing:-0.02em;margin-bottom:18px;max-width:760px}
+.work-intro{font-size:16px;color:var(--txt-dim);max-width:560px}
+.work-intro a{color:var(--txt);text-decoration:underline;text-underline-offset:3px}
+.work-wrap{padding:0 80px 130px;position:relative}
+.work-wrap::before{content:'';position:absolute;top:0;left:80px;right:80px;height:1px;background:var(--seam)}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:0}
+.work-card{position:relative;background:var(--bg);text-align:left;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;transition:background 250ms}
+.work-card:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
+.work-card:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.work-card:hover .work-img-inner{transform:scale(1.04)}
+.work-rank{position:absolute;top:13px;left:15px;z-index:2;font-family:var(--serif);font-size:13px;font-style:italic;color:var(--accent)}
+.work-img{display:block;position:relative;overflow:hidden;aspect-ratio:16/10}
+.work-img-inner{position:absolute;inset:0;transition:transform 450ms ease}
+.work-img-inner svg{position:absolute;inset:0;width:100%;height:100%}
+.work-meta{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
+.work-tag{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--txt-dim);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.work-tag::before{content:'';display:inline-block;width:4px;height:4px;background:var(--accent)}
+.work-name{font-family:var(--serif);font-size:22px;font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--txt)}
+.work-desc{font-size:13.5px;color:var(--txt-dim);line-height:1.6;margin-bottom:16px}
+.work-more{margin-top:auto;font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal-backdrop{position:absolute;inset:0;background:rgba(5,5,5,0.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal-panel{position:relative;z-index:1;width:100%;max-width:620px;max-height:88vh;overflow:auto;background:var(--bg);border:1px solid var(--border-hi);box-shadow:0 30px 80px rgba(0,0,0,0.5)}
+.modal-close{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);border:1px solid var(--border);color:var(--txt);cursor:pointer;font-size:13px;transition:border-color 200ms,color 200ms}
+.modal-close:hover{border-color:var(--accent);color:#fff}
+.wm-head{position:relative;overflow:hidden;aspect-ratio:16/7}
+.wm-head svg{position:absolute;inset:0;width:100%;height:100%}
+.wm-body{padding:32px 34px 38px}
+.wm-title{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1.15;margin:6px 0 14px}
+.wm-desc{font-size:14.5px;color:var(--txt-dim);line-height:1.7;margin-bottom:22px}
+.wm-desc code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.85em;color:var(--txt);background:var(--s-mid);padding:1px 5px;border-radius:3px}
+.wm-tech{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.wm-tech li{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--txt-dim);border:1px solid var(--border);padding:6px 11px}
+.wm-links{display:flex;flex-wrap:wrap;gap:12px}
+.proj-install{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:280px;margin-bottom:22px;padding:8px 8px 8px 12px;background:var(--s-mid);border:1px solid var(--border);border-radius:4px}
+.proj-install code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.proj-install code::before{content:'$ ';color:var(--txt-dim)}
+.proj-copy{flex:none;font-family:var(--sans);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt-dim);background:transparent;border:1px solid var(--border);border-radius:3px;padding:4px 8px;cursor:pointer;transition:color 200ms,border-color 200ms}
+.proj-copy:hover{color:var(--txt);border-color:var(--border-hi)}
+.proj-copy.copied{color:#5cd08a;border-color:rgba(92,208,138,0.4)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid rgba(255,255,255,0.36);background:transparent;color:var(--txt);font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background 180ms,color 180ms,border-color 180ms}
+.btn:hover{background:var(--accent);color:#08131f;border-color:var(--accent);box-shadow:0 0 24px rgba(0,153,255,0.25)}
+.btn.ghost{border-color:var(--border-hi)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 600ms ease,transform 600ms ease}
+.reveal.on{opacity:1;transform:none}
+footer{position:relative;border-top:1px solid var(--border);padding:24px 80px;display:flex;justify-content:space-between;align-items:center}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--seam)}
+footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}.work-img-inner{transition:none}}
+@media (max-width:900px){
+  nav{padding:0 40px}.nav-links{gap:22px}
+  .work-head{padding:120px 40px 48px}
+  .work-wrap{padding:0 40px 100px}.work-wrap::before{left:40px;right:40px}
+  footer{padding:24px 40px}
+}
+@media (max-width:560px){
+  nav{padding:0 22px;height:64px}.nav-links{gap:15px}.nav-links a{font-size:11px;letter-spacing:0.06em}
+  .work-head{padding:96px 22px 40px}
+  .work-wrap{padding:0 22px 80px}.work-wrap::before{left:22px;right:22px}
+  .modal{padding:0}.modal-panel{max-height:100vh;height:100%}
+  footer{padding:22px;flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────── -->
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="CJ home"><svg viewBox="0 0 124 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M 41.476562,12.783203 38.9375,23.726562 h -0.990234 q -0.177735,-4.46875 -2.208985,-6.652343 -2.005859,-2.208985 -5.255859,-2.208985 -3.503906,0 -6.982422,2.996094 -3.478516,2.996094 -5.890625,9.166016 -1.955078,5.001953 -1.955078,9.876953 0,4.367187 2.132812,6.677734 2.158203,2.285156 5.890625,2.285156 3.021485,0 5.509766,-1.320312 2.488281,-1.320313 5.027344,-4.291016 h 1.21875 q -3.148438,4.722657 -6.373047,6.626953 -3.199219,1.904297 -7.845703,1.904297 -6.220703,0 -10.029297,-3.757812 -3.7832033,-3.783203 -3.7832033,-9.851563 0,-5.6875 3.0214843,-10.841797 3.021485,-5.179687 8.683594,-8.353515 5.6875,-3.199219 11.298828,-3.199219 2.132812,0 5.306641,0.914063 1.625,0.457031 2.259765,0.457031 1.269531,0 2.564453,-1.371094 z m 10.095704,1.726563 0.279296,-0.939453 h 16.910157 l -0.279297,0.939453 q -2.335938,0 -3.63086,1.066406 -1.269531,1.041015 -2.132812,4.037109 l -3.681641,12.898438 q -2.005859,6.982422 -3.529297,9.77539 -1.498046,2.792969 -4.291015,4.646485 -2.767578,1.853515 -7.058594,1.853515 -3.478516,0 -5.179687,-1.447265 -1.701172,-1.472657 -1.701172,-3.707032 0,-1.853515 1.142578,-3.072265 1.167969,-1.244141 2.640625,-1.244141 1.320312,0 2.208984,0.837891 0.914063,0.83789 0.914063,2.05664 0,1.117188 -1.091797,2.41211 -0.660156,0.8125 -0.660156,1.294922 0,0.40625 0.355468,0.685547 0.609375,0.457031 1.396485,0.457031 1.472656,0 2.742187,-1.929688 Q 48.195312,43.201172 50.607422,35 l 4.519531,-15.386719 q 0.583984,-2.03125 0.583984,-2.919922 0,-0.939453 -0.710937,-1.472656 -0.710938,-0.533203 -3.427734,-0.710937 z m 6.541015,41.386718 h 26.964844 v 3.326172 H 58.113281 Z" fill="#f5f4ef"/>
+    </svg></a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#stack">Stack</a></li>
+    <li><a href="index.html#credentials">Education</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HEADER ────────────────────────────────────────────── -->
+<header class="work-head">
+  <div class="lbl reveal">All Work</div>
+  <h1 class="work-title-lg reveal">Everything I've built,<br>ranked.</h1>
+  <p class="work-intro reveal d1">Projects in descending order of how much I'd stand behind them. Click any card for the full write-up. <a href="index.html#projects">← Back to highlights</a></p>
+</header>
+
+<!--
+  HOW TO EDIT THIS PAGE
+  ─────────────────────
+  work.html is GENERATED. To change project data (order, copy, tech, links,
+  install commands), edit the "projects" array in build_work.js and re-run it,
+  OR edit the markup below directly — each project is one <div class="work-card">
+  with a <template> holding its modal detail. To RE-RANK, reorder the cards
+  (and update the .work-rank numbers). The artwork SVGs are lifted verbatim
+  from index.html so the two pages stay visually in sync.
+-->
+<!-- ── PROJECT GRID (ranked best → worst) ────────────────── -->
+<div class="work-wrap">
+  <div class="work-grid">
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for Device Optical Aid (DOA)">
+        <span class="work-rank">01</span>
+        <span class="work-img" style="background:#0c1220"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg1" cx="45%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#3a3aff" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#3a3aff" stop-opacity="0"/>
+              </radialGradient>
+              <marker id="arr1" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,255,255,0.25)"/>
+              </marker>
+            </defs>
+            <rect width="900" height="200" fill="url(#rg1)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="50" x2="900" y2="50"/><line x1="0" y1="100" x2="900" y2="100"/>
+              <line x1="0" y1="150" x2="900" y2="150"/>
+              <line x1="225" y1="0" x2="225" y2="200"/><line x1="450" y1="0" x2="450" y2="200"/>
+              <line x1="675" y1="0" x2="675" y2="200"/>
+            </g>
+            <circle cx="450" cy="100" r="72" stroke="rgba(100,120,255,0.28)" stroke-width="1" fill="none"/>
+            <circle cx="450" cy="100" r="30" stroke="rgba(100,120,255,0.38)" stroke-width="1" fill="none"/>
+            <circle cx="450" cy="100" r="8" stroke="rgba(180,190,255,0.55)" stroke-width="1" fill="rgba(100,120,255,0.12)"/>
+            <line x1="378" y1="100" x2="522" y2="100" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+            <line x1="450" y1="28" x2="450" y2="172" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+            <path d="M40 100 Q68 56 96 100 Q124 144 152 100 Q180 56 208 100 Q236 144 264 100 Q292 56 320 100" stroke="rgba(80,100,255,0.45)" stroke-width="1.5" fill="none"/>
+            <path d="M580 100 Q608 56 636 100 Q664 144 692 100 Q720 56 748 100 Q776 144 804 100 Q832 56 860 100" stroke="rgba(80,100,255,0.45)" stroke-width="1.5" fill="none"/>
+            <line x1="340" y1="100" x2="378" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
+            <line x1="522" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
+          </svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">Electron · WebGL2 · Optical Rendering</span>
+          <span class="work-name">Device Optical Aid (DOA)</span>
+          <span class="work-desc">Real-time software pre-distortion of the screen using a per-user Point Spread Function model.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#0c1220"><svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg1" cx="45%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#3a3aff" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="#3a3aff" stop-opacity="0"/>
+              </radialGradient>
+              <marker id="arr1" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,255,255,0.25)"/>
+              </marker>
+            </defs>
+            <rect width="900" height="200" fill="url(#rg1)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="50" x2="900" y2="50"/><line x1="0" y1="100" x2="900" y2="100"/>
+              <line x1="0" y1="150" x2="900" y2="150"/>
+              <line x1="225" y1="0" x2="225" y2="200"/><line x1="450" y1="0" x2="450" y2="200"/>
+              <line x1="675" y1="0" x2="675" y2="200"/>
+            </g>
+            <circle cx="450" cy="100" r="72" stroke="rgba(100,120,255,0.28)" stroke-width="1" fill="none"/>
+            <circle cx="450" cy="100" r="30" stroke="rgba(100,120,255,0.38)" stroke-width="1" fill="none"/>
+            <circle cx="450" cy="100" r="8" stroke="rgba(180,190,255,0.55)" stroke-width="1" fill="rgba(100,120,255,0.12)"/>
+            <line x1="378" y1="100" x2="522" y2="100" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+            <line x1="450" y1="28" x2="450" y2="172" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+            <path d="M40 100 Q68 56 96 100 Q124 144 152 100 Q180 56 208 100 Q236 144 264 100 Q292 56 320 100" stroke="rgba(80,100,255,0.45)" stroke-width="1.5" fill="none"/>
+            <path d="M580 100 Q608 56 636 100 Q664 144 692 100 Q720 56 748 100 Q776 144 804 100 Q832 56 860 100" stroke="rgba(80,100,255,0.45)" stroke-width="1.5" fill="none"/>
+            <line x1="340" y1="100" x2="378" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
+            <line x1="522" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
+          </svg></div>
+      <div class="wm-body">
+        <p class="work-tag">Electron · WebGL2 · Optical Rendering</p>
+        <h2 class="wm-title">Device Optical Aid (DOA)</h2>
+        <p class="wm-desc">Device Optical Aid pre-distorts what is rendered on screen so the displayed image compensates for a configurable per-user optical model. It builds a Point Spread Function from Zernike polynomials and applies the correction as a real-time WebGL2 fragment-shader pass, wrapped in an Electron desktop app.</p>
+        <ul class="wm-tech"><li>Electron</li><li>WebGL2</li><li>GLSL fragment shaders</li><li>Zernike polynomials</li><li>Real-time compositing</li></ul>
+        
+        <div class="wm-links"><a class="btn" href="https://deviceopticalaid.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+      </div></template>
+      </div>
+
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for TL;DR">
+        <span class="work-rank">02</span>
+        <span class="work-img" style="background:#0d1710"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg4" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00cc66" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#00cc66" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="900" height="200" fill="url(#rg4)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="50" x2="900" y2="50"/><line x1="0" y1="100" x2="900" y2="100"/>
+              <line x1="0" y1="150" x2="900" y2="150"/>
+              <line x1="300" y1="0" x2="300" y2="200"/><line x1="600" y1="0" x2="600" y2="200"/>
+            </g>
+            <!-- Document / reading pane left -->
+            <rect x="40" y="30" width="220" height="140" stroke="rgba(0,200,100,0.2)" stroke-width="1" fill="rgba(0,200,100,0.04)"/>
+            <rect x="56" y="48" width="160" height="6" fill="rgba(255,255,255,0.12)"/>
+            <rect x="56" y="62" width="140" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="56" y="72" width="150" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="56" y="82" width="130" height="4" fill="rgba(255,255,255,0.07)"/>
+            <!-- Highlight on reading line (gaze focus) -->
+            <rect x="56" y="95" width="155" height="7" fill="rgba(0,200,100,0.15)" stroke="rgba(0,200,100,0.3)" stroke-width="0.5"/>
+            <rect x="56" y="110" width="145" height="4" fill="rgba(255,255,255,0.05)"/>
+            <rect x="56" y="120" width="150" height="4" fill="rgba(255,255,255,0.05)"/>
+            <rect x="56" y="130" width="120" height="4" fill="rgba(255,255,255,0.05)"/>
+            <!-- Gaze dot -->
+            <circle cx="138" cy="99" r="5" fill="rgba(0,220,100,0.6)" stroke="rgba(0,220,100,0.9)" stroke-width="1"/>
+            <circle cx="138" cy="99" r="14" stroke="rgba(0,220,100,0.25)" stroke-width="1" fill="none"/>
+            <!-- AI summary pane right -->
+            <rect x="340" y="30" width="240" height="140" stroke="rgba(0,200,100,0.15)" stroke-width="1" fill="rgba(0,200,100,0.03)"/>
+            <rect x="356" y="44" width="80" height="5" fill="rgba(0,200,100,0.4)" rx="0"/>
+            <rect x="356" y="58" width="200" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="68" width="180" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="78" width="190" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="94" width="160" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="356" y="104" width="175" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="356" y="114" width="155" height="4" fill="rgba(255,255,255,0.07)"/>
+            <!-- Arrow connecting gaze to summary -->
+            <path d="M295 99 Q318 99 340 80" stroke="rgba(0,200,100,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+            <!-- Right: ML brain suggestion -->
+            <circle cx="720" cy="100" r="50" stroke="rgba(0,200,100,0.1)" stroke-width="0.5" fill="none"/>
+            <circle cx="720" cy="100" r="30" stroke="rgba(0,200,100,0.15)" stroke-width="0.5" fill="none"/>
+            <circle cx="720" cy="80" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="700" cy="105" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="740" cy="105" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="720" cy="125" r="4" fill="rgba(0,200,100,0.35)"/>
+            <line x1="720" y1="80" x2="700" y2="105" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="720" y1="80" x2="740" y2="105" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="700" y1="105" x2="720" y2="125" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="740" y1="105" x2="720" y2="125" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="700" y1="105" x2="740" y2="105" stroke="rgba(0,200,100,0.15)" stroke-width="0.8"/>
+          </svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">AI · Gaze Tracking · Python · Study Tool</span>
+          <span class="work-name">TL;DR</span>
+          <span class="work-desc">A gaze-aware reading assistant that surfaces summaries and definitions where you look.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#0d1710"><svg width="100%" height="100%" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg4" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00cc66" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#00cc66" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="900" height="200" fill="url(#rg4)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="50" x2="900" y2="50"/><line x1="0" y1="100" x2="900" y2="100"/>
+              <line x1="0" y1="150" x2="900" y2="150"/>
+              <line x1="300" y1="0" x2="300" y2="200"/><line x1="600" y1="0" x2="600" y2="200"/>
+            </g>
+            <!-- Document / reading pane left -->
+            <rect x="40" y="30" width="220" height="140" stroke="rgba(0,200,100,0.2)" stroke-width="1" fill="rgba(0,200,100,0.04)"/>
+            <rect x="56" y="48" width="160" height="6" fill="rgba(255,255,255,0.12)"/>
+            <rect x="56" y="62" width="140" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="56" y="72" width="150" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="56" y="82" width="130" height="4" fill="rgba(255,255,255,0.07)"/>
+            <!-- Highlight on reading line (gaze focus) -->
+            <rect x="56" y="95" width="155" height="7" fill="rgba(0,200,100,0.15)" stroke="rgba(0,200,100,0.3)" stroke-width="0.5"/>
+            <rect x="56" y="110" width="145" height="4" fill="rgba(255,255,255,0.05)"/>
+            <rect x="56" y="120" width="150" height="4" fill="rgba(255,255,255,0.05)"/>
+            <rect x="56" y="130" width="120" height="4" fill="rgba(255,255,255,0.05)"/>
+            <!-- Gaze dot -->
+            <circle cx="138" cy="99" r="5" fill="rgba(0,220,100,0.6)" stroke="rgba(0,220,100,0.9)" stroke-width="1"/>
+            <circle cx="138" cy="99" r="14" stroke="rgba(0,220,100,0.25)" stroke-width="1" fill="none"/>
+            <!-- AI summary pane right -->
+            <rect x="340" y="30" width="240" height="140" stroke="rgba(0,200,100,0.15)" stroke-width="1" fill="rgba(0,200,100,0.03)"/>
+            <rect x="356" y="44" width="80" height="5" fill="rgba(0,200,100,0.4)" rx="0"/>
+            <rect x="356" y="58" width="200" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="68" width="180" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="78" width="190" height="4" fill="rgba(255,255,255,0.1)"/>
+            <rect x="356" y="94" width="160" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="356" y="104" width="175" height="4" fill="rgba(255,255,255,0.07)"/>
+            <rect x="356" y="114" width="155" height="4" fill="rgba(255,255,255,0.07)"/>
+            <!-- Arrow connecting gaze to summary -->
+            <path d="M295 99 Q318 99 340 80" stroke="rgba(0,200,100,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+            <!-- Right: ML brain suggestion -->
+            <circle cx="720" cy="100" r="50" stroke="rgba(0,200,100,0.1)" stroke-width="0.5" fill="none"/>
+            <circle cx="720" cy="100" r="30" stroke="rgba(0,200,100,0.15)" stroke-width="0.5" fill="none"/>
+            <circle cx="720" cy="80" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="700" cy="105" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="740" cy="105" r="4" fill="rgba(0,200,100,0.35)"/>
+            <circle cx="720" cy="125" r="4" fill="rgba(0,200,100,0.35)"/>
+            <line x1="720" y1="80" x2="700" y2="105" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="720" y1="80" x2="740" y2="105" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="700" y1="105" x2="720" y2="125" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="740" y1="105" x2="720" y2="125" stroke="rgba(0,200,100,0.2)" stroke-width="0.8"/>
+            <line x1="700" y1="105" x2="740" y2="105" stroke="rgba(0,200,100,0.15)" stroke-width="0.8"/>
+          </svg></div>
+      <div class="wm-body">
+        <p class="work-tag">AI · Gaze Tracking · Python · Study Tool</p>
+        <h2 class="wm-title">TL;DR</h2>
+        <p class="wm-desc">TL;DR tracks where you are looking on the page and surfaces contextual summaries and definitions in real time, so dense reading material is easier to move through. It pairs eye-tracking with on-the-fly AI summarization.</p>
+        <ul class="wm-tech"><li>Python</li><li>Gaze tracking</li><li>Computer vision</li><li>AI summarization</li></ul>
+        
+        <div class="wm-links"><a class="btn" href="https://github.com/Cjayy77/TL-DR" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+      </div></template>
+      </div>
+
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for Chuchote">
+        <span class="work-rank">03</span>
+        <span class="work-img" style="background:#161006"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg5" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#f5a623" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg5)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="70" y="42" width="260" height="140" stroke="rgba(245,166,35,0.28)" stroke-width="1" fill="rgba(245,166,35,0.03)"/>
+            <line x1="70" y1="60" x2="330" y2="60" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+            <circle cx="82" cy="51" r="3" fill="rgba(245,166,35,0.5)"/>
+            <circle cx="94" cy="51" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="106" cy="51" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- prompt line -->
+            <rect x="84" y="74" width="7" height="7" fill="rgba(245,166,35,0.6)"/>
+            <rect x="98" y="75" width="90" height="5" fill="rgba(255,255,255,0.14)"/>
+            <!-- voice waveform -->
+            <g stroke="rgba(245,166,35,0.55)" stroke-width="2" stroke-linecap="round">
+              <line x1="96"  y1="120" x2="96"  y2="150"/><line x1="108" y1="108" x2="108" y2="162"/>
+              <line x1="120" y1="128" x2="120" y2="142"/><line x1="132" y1="100" x2="132" y2="170"/>
+              <line x1="144" y1="116" x2="144" y2="154"/><line x1="156" y1="94"  x2="156" y2="176"/>
+              <line x1="168" y1="122" x2="168" y2="148"/><line x1="180" y1="106" x2="180" y2="164"/>
+              <line x1="192" y1="126" x2="192" y2="144"/><line x1="204" y1="112" x2="204" y2="158"/>
+            </g>
+            <!-- mic + wake-word pulse -->
+            <rect x="280" y="104" width="20" height="34" rx="10" stroke="rgba(245,166,35,0.5)" stroke-width="1.5" fill="none"/>
+            <path d="M272 132 a18 18 0 0 0 36 0" stroke="rgba(245,166,35,0.35)" stroke-width="1.5" fill="none"/>
+            <line x1="290" y1="150" x2="290" y2="162" stroke="rgba(245,166,35,0.35)" stroke-width="1.5"/>
+            <circle cx="290" cy="88" r="4" fill="rgba(245,166,35,0.6)"/>
+            <circle cx="290" cy="88" r="11" stroke="rgba(245,166,35,0.25)" stroke-width="1" fill="none"/>
+          </svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">Python · CLI · Local Voice AI</span>
+          <span class="work-name">Chuchote</span>
+          <span class="work-desc">A local-first, hands-free voice assistant that wraps Ollama in a full offline speech loop.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#161006"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg5" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#f5a623" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg5)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="70" y="42" width="260" height="140" stroke="rgba(245,166,35,0.28)" stroke-width="1" fill="rgba(245,166,35,0.03)"/>
+            <line x1="70" y1="60" x2="330" y2="60" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+            <circle cx="82" cy="51" r="3" fill="rgba(245,166,35,0.5)"/>
+            <circle cx="94" cy="51" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="106" cy="51" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- prompt line -->
+            <rect x="84" y="74" width="7" height="7" fill="rgba(245,166,35,0.6)"/>
+            <rect x="98" y="75" width="90" height="5" fill="rgba(255,255,255,0.14)"/>
+            <!-- voice waveform -->
+            <g stroke="rgba(245,166,35,0.55)" stroke-width="2" stroke-linecap="round">
+              <line x1="96"  y1="120" x2="96"  y2="150"/><line x1="108" y1="108" x2="108" y2="162"/>
+              <line x1="120" y1="128" x2="120" y2="142"/><line x1="132" y1="100" x2="132" y2="170"/>
+              <line x1="144" y1="116" x2="144" y2="154"/><line x1="156" y1="94"  x2="156" y2="176"/>
+              <line x1="168" y1="122" x2="168" y2="148"/><line x1="180" y1="106" x2="180" y2="164"/>
+              <line x1="192" y1="126" x2="192" y2="144"/><line x1="204" y1="112" x2="204" y2="158"/>
+            </g>
+            <!-- mic + wake-word pulse -->
+            <rect x="280" y="104" width="20" height="34" rx="10" stroke="rgba(245,166,35,0.5)" stroke-width="1.5" fill="none"/>
+            <path d="M272 132 a18 18 0 0 0 36 0" stroke="rgba(245,166,35,0.35)" stroke-width="1.5" fill="none"/>
+            <line x1="290" y1="150" x2="290" y2="162" stroke="rgba(245,166,35,0.35)" stroke-width="1.5"/>
+            <circle cx="290" cy="88" r="4" fill="rgba(245,166,35,0.6)"/>
+            <circle cx="290" cy="88" r="11" stroke="rgba(245,166,35,0.25)" stroke-width="1" fill="none"/>
+          </svg></div>
+      <div class="wm-body">
+        <p class="work-tag">Python · CLI · Local Voice AI</p>
+        <h2 class="wm-title">Chuchote</h2>
+        <p class="wm-desc">Chuchote turns local Ollama models into a hands-free voice assistant: wake-word detection, Whisper for speech-to-text, Piper for text-to-speech, and barge-in so you can interrupt mid-response. Everything runs on-device — no cloud calls, ever. Packaged and published to PyPI.</p>
+        <ul class="wm-tech"><li>Python</li><li>Ollama</li><li>Whisper (STT)</li><li>Piper (TTS)</li><li>Wake-word</li><li>Fully offline</li></ul>
+        <div class="proj-install"><code>pip install chuchote</code><button class="proj-copy" type="button" aria-label="Copy install command">Copy</button></div>
+        <div class="wm-links"><a class="btn" href="https://github.com/Cjayy77/chuchote" target="_blank" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://pypi.org/project/chuchote/" target="_blank" rel="noopener">PyPI ↗</a></div>
+      </div></template>
+      </div>
+
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for Playcheck">
+        <span class="work-rank">04</span>
+        <span class="work-img" style="background:#07161a"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg6" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#22b8cf" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#22b8cf" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg6)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="60" y="38" width="280" height="150" stroke="rgba(45,190,212,0.28)" stroke-width="1" fill="rgba(45,190,212,0.03)"/>
+            <line x1="60" y1="56" x2="340" y2="56" stroke="rgba(45,190,212,0.2)" stroke-width="1"/>
+            <circle cx="72" cy="47" r="3" fill="rgba(45,190,212,0.5)"/>
+            <circle cx="84" cy="47" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="96" cy="47" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- host group A -->
+            <rect x="74" y="70" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="70" width="70" height="5" fill="rgba(255,255,255,0.16)"/>
+            <!-- diff rows -->
+            <rect x="74" y="86"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="87"  width="150" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="98"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="99"  width="120" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="110" width="6" height="6" fill="rgba(240,110,110,0.5)"/><rect x="88" y="111" width="135" height="4" fill="rgba(240,110,110,0.20)"/>
+            <rect x="88" y="123" width="100" height="4" fill="rgba(255,255,255,0.08)"/>
+            <!-- host group B -->
+            <rect x="74" y="142" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="142" width="60" height="5" fill="rgba(255,255,255,0.16)"/>
+            <rect x="74" y="158" width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="159" width="140" height="4" fill="rgba(80,220,140,0.22)"/>
+            <!-- check badge -->
+            <circle cx="292" cy="112" r="26" stroke="rgba(45,190,212,0.3)" stroke-width="1" fill="none"/>
+            <path d="M281 112 l8 8 l14 -16" stroke="rgba(45,190,212,0.65)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">Python · CLI · DevOps Tooling</span>
+          <span class="work-name">Playcheck</span>
+          <span class="work-desc">Turns ansible-playbook --check --diff into a readable, PR-postable preview.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#07161a"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg6" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#22b8cf" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#22b8cf" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg6)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="60" y="38" width="280" height="150" stroke="rgba(45,190,212,0.28)" stroke-width="1" fill="rgba(45,190,212,0.03)"/>
+            <line x1="60" y1="56" x2="340" y2="56" stroke="rgba(45,190,212,0.2)" stroke-width="1"/>
+            <circle cx="72" cy="47" r="3" fill="rgba(45,190,212,0.5)"/>
+            <circle cx="84" cy="47" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="96" cy="47" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- host group A -->
+            <rect x="74" y="70" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="70" width="70" height="5" fill="rgba(255,255,255,0.16)"/>
+            <!-- diff rows -->
+            <rect x="74" y="86"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="87"  width="150" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="98"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="99"  width="120" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="110" width="6" height="6" fill="rgba(240,110,110,0.5)"/><rect x="88" y="111" width="135" height="4" fill="rgba(240,110,110,0.20)"/>
+            <rect x="88" y="123" width="100" height="4" fill="rgba(255,255,255,0.08)"/>
+            <!-- host group B -->
+            <rect x="74" y="142" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="142" width="60" height="5" fill="rgba(255,255,255,0.16)"/>
+            <rect x="74" y="158" width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="159" width="140" height="4" fill="rgba(80,220,140,0.22)"/>
+            <!-- check badge -->
+            <circle cx="292" cy="112" r="26" stroke="rgba(45,190,212,0.3)" stroke-width="1" fill="none"/>
+            <path d="M281 112 l8 8 l14 -16" stroke="rgba(45,190,212,0.65)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></div>
+      <div class="wm-body">
+        <p class="work-tag">Python · CLI · DevOps Tooling</p>
+        <h2 class="wm-title">Playcheck</h2>
+        <p class="wm-desc">Playcheck turns <code>ansible-playbook --check --diff</code> output into a readable, PR-postable preview: it groups changes by host, renders clean diffs, and flags tasks that silently cannot be previewed in check mode. Built for CI pipelines and code review. Published to PyPI.</p>
+        <ul class="wm-tech"><li>Python</li><li>Ansible</li><li>CI / CD</li><li>Diff rendering</li></ul>
+        <div class="proj-install"><code>pip install playcheck</code><button class="proj-copy" type="button" aria-label="Copy install command">Copy</button></div>
+        <div class="wm-links"><a class="btn" href="https://github.com/Cjayy77/Playcheck" target="_blank" rel="noopener">View on GitHub ↗</a><a class="btn ghost" href="https://pypi.org/project/playcheck/" target="_blank" rel="noopener">PyPI ↗</a></div>
+      </div></template>
+      </div>
+
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for GeoAttend">
+        <span class="work-rank">05</span>
+        <span class="work-img" style="background:#120f22"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#8040ff" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#8040ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg2)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <rect x="150" y="72" width="100" height="32" stroke="rgba(180,150,255,0.38)" stroke-width="1" fill="rgba(180,150,255,0.04)"/>
+            <rect x="100" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
+            <rect x="220" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
+            <line x1="200" y1="104" x2="140" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            <line x1="200" y1="104" x2="260" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            <rect x="100" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="142" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="220" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="262" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+          </svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">Attendance · Geolocation · QR Verification</span>
+          <span class="work-name">GeoAttend</span>
+          <span class="work-desc">A web platform for collecting attendance via geolocation, with QR-code fallback.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#120f22"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#8040ff" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#8040ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg2)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <rect x="150" y="72" width="100" height="32" stroke="rgba(180,150,255,0.38)" stroke-width="1" fill="rgba(180,150,255,0.04)"/>
+            <rect x="100" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
+            <rect x="220" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
+            <line x1="200" y1="104" x2="140" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            <line x1="200" y1="104" x2="260" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            <rect x="100" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="142" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="220" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+            <rect x="262" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
+          </svg></div>
+      <div class="wm-body">
+        <p class="work-tag">Attendance · Geolocation · QR Verification</p>
+        <h2 class="wm-title">GeoAttend</h2>
+        <p class="wm-desc">GeoAttend collects attendance using device geolocation, with QR-code verification as a fallback for when location is not reliable enough on its own.</p>
+        <ul class="wm-tech"><li>Web platform</li><li>Geolocation</li><li>QR verification</li></ul>
+        
+        <div class="wm-links"><a class="btn" href="https://github.com/Cjayy77/GeoAttend" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+      </div></template>
+      </div>
+  </div>
+</div>
+
+<!-- ── MODAL ─────────────────────────────────────────────── -->
+<div class="modal" id="work-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Project details">
+    <button class="modal-close" type="button" aria-label="Close details">✕</button>
+    <div class="modal-inner"></div>
+  </div>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <span>© Cedric Julien E.</span>
+  <span>Built with intent.</span>
+</footer>
+
+<script>
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Copy install command (binds within a given root) */
+function bindCopy(root) {
+  root.querySelectorAll('.proj-copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(btn.previousElementSibling.textContent); } catch (e) {}
+      btn.textContent = 'Copied'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+    });
+  });
+}
+
+/* Project detail modal */
+const modal = document.getElementById('work-modal');
+const modalInner = modal.querySelector('.modal-inner');
+let lastFocused = null;
+
+function openCard(card) {
+  lastFocused = card;
+  modalInner.innerHTML = card.querySelector('template').innerHTML;
+  bindCopy(modalInner);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  modal.querySelector('.modal-close').focus();
+}
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  modalInner.innerHTML = '';
+  if (lastFocused) lastFocused.focus();
+}
+
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('click', () => openCard(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(card); }
+  });
+});
+modal.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-backdrop') || e.target.closest('.modal-close')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+</script>
+</body>
+</html>

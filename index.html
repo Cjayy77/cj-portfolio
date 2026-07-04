@@ -18,6 +18,8 @@
   --txt-dim:#c4c7c8;
   --border:rgba(255,255,255,0.10);
   --border-hi:rgba(255,255,255,0.22);
+  /* shared blue accent (matches the hero rain) */
+  --accent:#09f;
   /* tinted section-seam line, echoing the hero rain */
   --seam:linear-gradient(90deg, rgba(0,153,255,0) 0%, rgba(0,153,255,0.5) 50%, rgba(0,153,255,0) 100%);
   --serif:'Libre Caslon Text',Georgia,serif;
@@ -52,22 +54,22 @@ nav.scrolled{
   font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
   color:var(--txt-dim);text-decoration:none;transition:color 200ms;
 }
-.nav-links a:hover{color:var(--txt)}
+.nav-links a:hover{color:#6cbcff}
 
 /* ─── SHARED ─────────────────────────────────────────── */
 .lbl{
   font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
   color:var(--txt-dim);display:flex;align-items:center;gap:14px;margin-bottom:56px;
 }
-.lbl::after{content:'';display:block;height:1px;width:36px;background:var(--border-hi)}
+.lbl::after{content:'';display:block;height:1px;width:36px;background:linear-gradient(90deg,var(--accent),rgba(0,153,255,0))}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 600ms ease,transform 600ms ease}
 .reveal.on{opacity:1;transform:none}
 .d1{transition-delay:90ms}.d2{transition-delay:180ms}.d3{transition-delay:270ms}
 
 /* Crisp, aurora-tinted 1px seam at the top of each section (keeps the hard-line aesthetic) */
-#about,#projects,#stack,#contact,footer{position:relative}
-#about::before,#projects::before,#stack::before,#contact::before,footer::before{
+#about,#projects,#stack,#credentials,#contact,footer{position:relative}
+#about::before,#projects::before,#stack::before,#credentials::before,#contact::before,footer::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--seam);
 }
 
@@ -213,7 +215,7 @@ nav.scrolled{
   letter-spacing:0.10em;text-transform:uppercase;text-decoration:none;
   transition:background 180ms,color 180ms,border-color 180ms;
 }
-.btn:hover{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.btn:hover{background:var(--accent);color:#08131f;border-color:var(--accent);box-shadow:0 0 24px rgba(0,153,255,0.25)}
 
 /* ─── ABOUT ──────────────────────────────────────────── */
 #about{padding:160px 80px;display:grid;grid-template-columns:220px 1fr;gap:80px;align-items:start}
@@ -230,7 +232,7 @@ nav.scrolled{
   color:var(--txt-dim);border:1px solid var(--border);padding:6px 12px;
   transition:border-color 200ms,color 200ms;
 }
-.chip:hover{border-color:var(--border-hi);color:var(--txt)}
+.chip:hover{border-color:rgba(0,153,255,0.6);color:var(--txt)}
 
 /* ─── PROJECTS ───────────────────────────────────────── */
 #projects{padding:160px 80px}
@@ -243,7 +245,7 @@ nav.scrolled{
   display:grid;grid-template-columns:1fr 1fr;align-items:stretch;
   background:var(--bg);transition:background 250ms;
 }
-.proj-row:hover{background:var(--s-low)}
+.proj-row:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
 .proj-row:hover .proj-img-inner{transform:scale(1.03)}
 /* zig-zag: even rows put the image on the right */
 .proj-row:nth-child(even) .proj-img{grid-column:2;grid-row:1}
@@ -282,7 +284,8 @@ nav.scrolled{
   color:var(--txt);text-decoration:none;display:inline-flex;align-items:center;gap:8px;
   border-bottom:1px solid var(--border-hi);padding-bottom:2px;transition:gap 200ms;
 }
-.proj-link:hover{gap:14px}
+.proj-link:hover{gap:14px;border-bottom-color:var(--accent)}
+.work-cta{margin-top:48px;display:flex;justify-content:center}
 
 /* ─── STACK ──────────────────────────────────────────── */
 #stack{padding:160px 80px}
@@ -295,7 +298,7 @@ nav.scrolled{
   display:flex;flex-direction:column;align-items:center;gap:10px;
   transition:background 200ms;
 }
-.stack-item:hover{background:var(--s-low)}
+.stack-item:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
 .stack-glyph{
   font-family:var(--serif);font-size:19px;font-style:italic;font-weight:700;
   color:var(--txt);line-height:1;
@@ -303,6 +306,28 @@ nav.scrolled{
 .stack-name{
   font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
   color:var(--txt-dim);text-align:center;
+}
+
+/* ─── CREDENTIALS ────────────────────────────────────── */
+#credentials{padding:160px 80px}
+.cred-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.cred-col{background:var(--bg);padding:38px 34px 30px;transition:background 200ms}
+.cred-col:hover{background:var(--s-low);box-shadow:inset 0 0 0 1px rgba(0,153,255,0.22)}
+.cred-cat{
+  font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--txt-dim);margin-bottom:22px;display:flex;align-items:center;gap:8px;
+}
+/* the little accent tick borrows the hero-rain blue */
+.cred-cat::before{content:'';width:5px;height:5px;background:#09f;border-radius:50%}
+.cred-item{padding:15px 0;border-bottom:1px solid var(--border)}
+.cred-item:last-child{border-bottom:none}
+.cred-title{display:block;font-size:15px;color:var(--txt);line-height:1.4}
+.cred-meta{
+  display:block;margin-top:5px;font-size:11px;letter-spacing:0.05em;
+  color:var(--txt-dim);
 }
 
 /* ─── CONTACT ────────────────────────────────────────── */
@@ -328,7 +353,8 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
   #hero{padding:72px 40px 0}
   #about{padding:120px 40px;grid-template-columns:1fr;gap:32px}
   .about-sticky{position:static;top:auto}
-  #projects,#stack,#contact{padding:120px 40px}
+  #projects,#stack,#credentials,#contact{padding:120px 40px}
+  .cred-grid{grid-template-columns:1fr}
   footer{padding:24px 40px}
   /* stack feature rows: image on top, text below (no zig-zag) */
   .proj-row{grid-template-columns:1fr}
@@ -346,7 +372,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
   .hero-sub{margin-bottom:40px}
   .hero-rule{margin-top:64px}
   .hero-btns{flex-wrap:wrap}
-  #about,#projects,#stack,#contact{padding:88px 22px}
+  #about,#projects,#stack,#credentials,#contact{padding:88px 22px}
   .lbl{margin-bottom:40px}
   .proj-img{min-height:200px}
   .proj-meta{padding:32px 24px}
@@ -368,6 +394,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
     <li><a href="#stack">Stack</a></li>
+    <li><a href="#credentials">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -583,89 +610,9 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
       </div>
     </div>
 
-    <!-- Playcheck -->
-    <div class="proj-row reveal">
-      <div class="proj-img" style="background:#07161a">
-        <div class="proj-img-inner">
-          <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="rg6" cx="50%" cy="50%" r="55%">
-                <stop offset="0%" stop-color="#22b8cf" stop-opacity="0.18"/>
-                <stop offset="100%" stop-color="#22b8cf" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="225" fill="url(#rg6)"/>
-            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
-              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
-              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
-            </g>
-            <!-- terminal window -->
-            <rect x="60" y="38" width="280" height="150" stroke="rgba(45,190,212,0.28)" stroke-width="1" fill="rgba(45,190,212,0.03)"/>
-            <line x1="60" y1="56" x2="340" y2="56" stroke="rgba(45,190,212,0.2)" stroke-width="1"/>
-            <circle cx="72" cy="47" r="3" fill="rgba(45,190,212,0.5)"/>
-            <circle cx="84" cy="47" r="3" fill="rgba(255,255,255,0.18)"/>
-            <circle cx="96" cy="47" r="3" fill="rgba(255,255,255,0.12)"/>
-            <!-- host group A -->
-            <rect x="74" y="70" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
-            <rect x="90" y="70" width="70" height="5" fill="rgba(255,255,255,0.16)"/>
-            <!-- diff rows -->
-            <rect x="74" y="86"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="87"  width="150" height="4" fill="rgba(80,220,140,0.22)"/>
-            <rect x="74" y="98"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="99"  width="120" height="4" fill="rgba(80,220,140,0.22)"/>
-            <rect x="74" y="110" width="6" height="6" fill="rgba(240,110,110,0.5)"/><rect x="88" y="111" width="135" height="4" fill="rgba(240,110,110,0.20)"/>
-            <rect x="88" y="123" width="100" height="4" fill="rgba(255,255,255,0.08)"/>
-            <!-- host group B -->
-            <rect x="74" y="142" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
-            <rect x="90" y="142" width="60" height="5" fill="rgba(255,255,255,0.16)"/>
-            <rect x="74" y="158" width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="159" width="140" height="4" fill="rgba(80,220,140,0.22)"/>
-            <!-- check badge -->
-            <circle cx="292" cy="112" r="26" stroke="rgba(45,190,212,0.3)" stroke-width="1" fill="none"/>
-            <path d="M281 112 l8 8 l14 -16" stroke="rgba(45,190,212,0.65)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </div>
-      <div class="proj-meta">
-        <p class="proj-tag">Python · CLI · DevOps Tooling</p>
-        <h3 class="proj-title">Playcheck</h3>
-        <p class="proj-desc">A CLI that turns <code>ansible-playbook --check --diff</code> into a readable, PR-postable preview — grouping changes by host, rendering clean diffs, and flagging tasks that silently can't be previewed. Published on PyPI.</p>
-        <div class="proj-install"><code>pip install playcheck</code><button class="proj-copy" type="button" aria-label="Copy install command">Copy</button></div>
-        <a href="https://github.com/Cjayy77/Playcheck" class="proj-link">View Project →</a>
-      </div>
-    </div>
-
-    <!-- GeoAttend -->
-    <div class="proj-row reveal">
-      <div class="proj-img" style="background:#120f22">
-        <div class="proj-img-inner">
-          <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#8040ff" stop-opacity="0.22"/>
-                <stop offset="100%" stop-color="#8040ff" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="225" fill="url(#rg2)"/>
-            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
-              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
-              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
-            </g>
-            <rect x="150" y="72" width="100" height="32" stroke="rgba(180,150,255,0.38)" stroke-width="1" fill="rgba(180,150,255,0.04)"/>
-            <rect x="100" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
-            <rect x="220" y="124" width="80" height="26" stroke="rgba(180,150,255,0.25)" stroke-width="1" fill="none"/>
-            <line x1="200" y1="104" x2="140" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
-            <line x1="200" y1="104" x2="260" y2="124" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
-            <rect x="100" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
-            <rect x="142" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
-            <rect x="220" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
-            <rect x="262" y="164" width="36" height="18" stroke="rgba(180,150,255,0.15)" stroke-width="0.5" fill="none"/>
-          </svg>
-        </div>
-      </div>
-      <div class="proj-meta">
-        <p class="proj-tag">Attendance · Geolocation · QR Verification</p>
-        <h3 class="proj-title">GeoAttend</h3>
-        <p class="proj-desc">A web platform to collect attendance via location and QR code as fallback.</p>
-        <a href="https://github.com/Cjayy77/GeoAttend" class="proj-link">View Project →</a>
-      </div>
+    <!-- Top 3 shown here; full ranked list lives on work.html -->
+    <div class="work-cta reveal">
+      <a href="work.html" class="btn">View all work →</a>
     </div>
 
   </div>
@@ -691,6 +638,72 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     <div class="stack-item"><span class="stack-glyph">Cs</span><span class="stack-name">CSS</span></div>
      <div class="stack-item"><span class="stack-glyph">C</span><span class="stack-name">C</span></div>
      <div class="stack-item"><span class="stack-glyph">Cpp</span><span class="stack-name">C++</span></div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ─────────────────────────────────────────── -->
+<!--
+  HOW TO EDIT THIS SECTION
+  ────────────────────────
+  There are three columns: Degrees, Certifications, Papers.
+  To ADD an entry, copy one <div class="cred-item"> ... </div> block
+  and paste it inside the matching column, then edit the two fields:
+      .cred-title  →  the name of the degree / certification / paper
+      .cred-meta   →  the issuer / venue and the year(s)
+  To REMOVE an entry, delete its whole <div class="cred-item"> block.
+  To hide a whole column, delete that entire <div class="cred-col"> block
+  (and change the other columns' grid so it still looks balanced).
+  Note: this section intentionally does NOT show your name anywhere.
+-->
+<section id="credentials">
+  <div class="lbl reveal">Education &amp; Credentials</div>
+  <div class="cred-grid">
+
+    <!-- ══════════ DEGREES ══════════ -->
+    <div class="cred-col reveal">
+      <h3 class="cred-cat">Degrees</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">BSc Computer Science</span>
+        <span class="cred-meta">Your University · 2023 – 2026</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Add another degree here</span>
+        <span class="cred-meta">Institution · Year</span>
+      </div>
+    </div>
+
+    <!-- ══════════ CERTIFICATIONS ══════════ -->
+    <div class="cred-col reveal d1">
+      <h3 class="cred-cat">Certifications</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">Certification Name</span>
+        <span class="cred-meta">Issuing Body · Year</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Another Certification</span>
+        <span class="cred-meta">Issuing Body · Year</span>
+      </div>
+    </div>
+
+    <!-- ══════════ PAPERS ══════════ -->
+    <div class="cred-col reveal d2">
+      <h3 class="cred-cat">Papers</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">Title of the paper or write-up</span>
+        <span class="cred-meta">Venue / Journal · Year</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Another paper title</span>
+        <span class="cred-meta">Venue / Journal · Year</span>
+      </div>
+    </div>
+
   </div>
 </section>
 

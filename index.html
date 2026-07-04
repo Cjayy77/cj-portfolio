@@ -394,7 +394,8 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
     <li><a href="#stack">Stack</a></li>
-    <li><a href="#credentials">Education</a></li>
+    <!-- Re-enable together with the Education/Credentials section below -->
+    <!-- <li><a href="#credentials">Education</a></li> -->
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -641,6 +642,13 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
   </div>
 </section>
 
+<!-- Education / Credentials section is temporarily disabled. It is wrapped
+     in the <template> below so nothing renders. To bring it back, delete the
+     opening <template id="credentials-off"> line and its matching closing
+     tag further down (and uncomment the "Education" nav link). A template is
+     used instead of an HTML comment because this block contains its own
+     comments, which cannot be nested inside a comment. -->
+<template id="credentials-off">
 <!-- ── CREDENTIALS ─────────────────────────────────────────── -->
 <!--
   HOW TO EDIT THIS SECTION
@@ -706,6 +714,8 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
 
   </div>
 </section>
+</template>
+<!-- end of temporarily-disabled Education / Credentials section -->
 
 <!-- ── CONTACT ────────────────────────────────────────────── -->
 <section id="contact">

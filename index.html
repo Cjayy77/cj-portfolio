@@ -163,6 +163,7 @@ nav.scrolled{
 .proj-tag::before{content:'';display:inline-block;width:4px;height:4px;background:currentColor}
 .proj-title{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.2;margin-bottom:10px;color:var(--txt)}
 .proj-desc{font-size:14px;color:var(--txt-dim);line-height:1.65;margin-bottom:20px}
+.proj-desc code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.85em;color:var(--txt);background:var(--s-mid);padding:1px 5px;border-radius:3px}
 .proj-link{
   font-size:11px;font-weight:500;letter-spacing:0.10em;text-transform:uppercase;
   color:var(--txt);text-decoration:none;display:inline-flex;align-items:center;gap:8px;
@@ -425,6 +426,104 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
         <h3 class="proj-title">TL;DR</h3>
         <p class="proj-desc">An AI-powered, gaze-aware study and reading assistant that tracks where you're looking to surface contextual summaries and definitions in real time. Built to make dense reading material less painful.</p>
         <a href="https://github.com/Cjayy77/TL-DR" class="proj-link">View Project →</a>
+      </div>
+    </div>
+
+    <!-- Chuchote -->
+    <div class="proj-card">
+      <div class="proj-img" style="background:#161006">
+        <div class="proj-img-inner">
+          <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg5" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#f5a623" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg5)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="70" y="42" width="260" height="140" stroke="rgba(245,166,35,0.28)" stroke-width="1" fill="rgba(245,166,35,0.03)"/>
+            <line x1="70" y1="60" x2="330" y2="60" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+            <circle cx="82" cy="51" r="3" fill="rgba(245,166,35,0.5)"/>
+            <circle cx="94" cy="51" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="106" cy="51" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- prompt line -->
+            <rect x="84" y="74" width="7" height="7" fill="rgba(245,166,35,0.6)"/>
+            <rect x="98" y="75" width="90" height="5" fill="rgba(255,255,255,0.14)"/>
+            <!-- voice waveform -->
+            <g stroke="rgba(245,166,35,0.55)" stroke-width="2" stroke-linecap="round">
+              <line x1="96"  y1="120" x2="96"  y2="150"/><line x1="108" y1="108" x2="108" y2="162"/>
+              <line x1="120" y1="128" x2="120" y2="142"/><line x1="132" y1="100" x2="132" y2="170"/>
+              <line x1="144" y1="116" x2="144" y2="154"/><line x1="156" y1="94"  x2="156" y2="176"/>
+              <line x1="168" y1="122" x2="168" y2="148"/><line x1="180" y1="106" x2="180" y2="164"/>
+              <line x1="192" y1="126" x2="192" y2="144"/><line x1="204" y1="112" x2="204" y2="158"/>
+            </g>
+            <!-- mic + wake-word pulse -->
+            <rect x="280" y="104" width="20" height="34" rx="10" stroke="rgba(245,166,35,0.5)" stroke-width="1.5" fill="none"/>
+            <path d="M272 132 a18 18 0 0 0 36 0" stroke="rgba(245,166,35,0.35)" stroke-width="1.5" fill="none"/>
+            <line x1="290" y1="150" x2="290" y2="162" stroke="rgba(245,166,35,0.35)" stroke-width="1.5"/>
+            <circle cx="290" cy="88" r="4" fill="rgba(245,166,35,0.6)"/>
+            <circle cx="290" cy="88" r="11" stroke="rgba(245,166,35,0.25)" stroke-width="1" fill="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="proj-meta">
+        <p class="proj-tag">Python · CLI · Local Voice AI</p>
+        <h3 class="proj-title">Chuchote</h3>
+        <p class="proj-desc">A local-first, hands-free voice assistant for Ollama models — wake-word activation, Whisper speech-to-text, Piper text-to-speech, and real-time barge-in. Runs entirely offline, with no cloud calls. Published on PyPI.</p>
+        <a href="https://github.com/Cjayy77/chuchote" class="proj-link">View Project →</a>
+      </div>
+    </div>
+
+    <!-- Playcheck -->
+    <div class="proj-card">
+      <div class="proj-img" style="background:#07161a">
+        <div class="proj-img-inner">
+          <svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rg6" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#22b8cf" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#22b8cf" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="225" fill="url(#rg6)"/>
+            <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none">
+              <line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/>
+            </g>
+            <!-- terminal window -->
+            <rect x="60" y="38" width="280" height="150" stroke="rgba(45,190,212,0.28)" stroke-width="1" fill="rgba(45,190,212,0.03)"/>
+            <line x1="60" y1="56" x2="340" y2="56" stroke="rgba(45,190,212,0.2)" stroke-width="1"/>
+            <circle cx="72" cy="47" r="3" fill="rgba(45,190,212,0.5)"/>
+            <circle cx="84" cy="47" r="3" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="96" cy="47" r="3" fill="rgba(255,255,255,0.12)"/>
+            <!-- host group A -->
+            <rect x="74" y="70" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="70" width="70" height="5" fill="rgba(255,255,255,0.16)"/>
+            <!-- diff rows -->
+            <rect x="74" y="86"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="87"  width="150" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="98"  width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="99"  width="120" height="4" fill="rgba(80,220,140,0.22)"/>
+            <rect x="74" y="110" width="6" height="6" fill="rgba(240,110,110,0.5)"/><rect x="88" y="111" width="135" height="4" fill="rgba(240,110,110,0.20)"/>
+            <rect x="88" y="123" width="100" height="4" fill="rgba(255,255,255,0.08)"/>
+            <!-- host group B -->
+            <rect x="74" y="142" width="10" height="5" fill="rgba(45,190,212,0.6)"/>
+            <rect x="90" y="142" width="60" height="5" fill="rgba(255,255,255,0.16)"/>
+            <rect x="74" y="158" width="6" height="6" fill="rgba(80,220,140,0.5)"/><rect x="88" y="159" width="140" height="4" fill="rgba(80,220,140,0.22)"/>
+            <!-- check badge -->
+            <circle cx="292" cy="112" r="26" stroke="rgba(45,190,212,0.3)" stroke-width="1" fill="none"/>
+            <path d="M281 112 l8 8 l14 -16" stroke="rgba(45,190,212,0.65)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="proj-meta">
+        <p class="proj-tag">Python · CLI · DevOps Tooling</p>
+        <h3 class="proj-title">Playcheck</h3>
+        <p class="proj-desc">A CLI that turns <code>ansible-playbook --check --diff</code> into a readable, PR-postable preview — grouping changes by host, rendering clean diffs, and flagging tasks that silently can't be previewed. Published on PyPI.</p>
+        <a href="https://github.com/Cjayy77/Playcheck" class="proj-link">View Project →</a>
       </div>
     </div>
 

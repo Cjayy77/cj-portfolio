@@ -18,6 +18,8 @@
   --txt-dim:#c4c7c8;
   --border:rgba(255,255,255,0.10);
   --border-hi:rgba(255,255,255,0.22);
+  /* tinted section-seam line, echoing the hero aurora */
+  --seam:linear-gradient(90deg, rgba(138,43,226,0.55) 0%, rgba(0,191,255,0.45) 50%, rgba(50,205,50,0.4) 100%);
   --serif:'Libre Caslon Text',Georgia,serif;
   --sans:'Inter',system-ui,sans-serif;
 }
@@ -63,6 +65,12 @@ nav.scrolled{
 .reveal.on{opacity:1;transform:none}
 .d1{transition-delay:90ms}.d2{transition-delay:180ms}.d3{transition-delay:270ms}
 
+/* Crisp, aurora-tinted 1px seam at the top of each section (keeps the hard-line aesthetic) */
+#about,#projects,#stack,#contact,footer{position:relative}
+#about::before,#projects::before,#stack::before,#contact::before,footer::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--seam);
+}
+
 /* ─── HERO ───────────────────────────────────────────── */
 #hero{
   min-height:100vh;display:flex;flex-direction:column;justify-content:center;
@@ -76,9 +84,9 @@ nav.scrolled{
 .hero-aurora{
   position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(138,43,226,0.8) 0%, rgba(138,43,226,0) 60%),
-    radial-gradient(ellipse at 80% 50%, rgba(0,191,255,0.7) 0%, rgba(0,191,255,0) 70%),
-    radial-gradient(ellipse at 50% 80%, rgba(50,205,50,0.6) 0%, rgba(50,205,50,0) 65%),
+    radial-gradient(ellipse at 20% 30%, rgba(138,43,226,0.42) 0%, rgba(138,43,226,0) 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(0,191,255,0.36) 0%, rgba(0,191,255,0) 70%),
+    radial-gradient(ellipse at 50% 80%, rgba(50,205,50,0.28) 0%, rgba(50,205,50,0) 65%),
     linear-gradient(135deg, #000000 0%, #0a0520 100%);
   background-blend-mode:overlay, screen, hard-light;
   animation:aurora-drift 25s infinite alternate ease-in-out;
@@ -96,9 +104,9 @@ nav.scrolled{
   animation:aurora-pulse 8s infinite alternate;
 }
 @keyframes aurora-drift{
-  0%{background-position:0% 0%,0% 0%,0% 0%;filter:hue-rotate(0deg) brightness(1)}
-  50%{background-position:-10% -5%,5% 10%,0% 15%;filter:hue-rotate(30deg) brightness(1.2)}
-  100%{background-position:5% 10%,-10% -5%,15% 0%;filter:hue-rotate(60deg) brightness(1)}
+  0%{background-position:0% 0%,0% 0%,0% 0%;filter:hue-rotate(0deg) brightness(0.9)}
+  50%{background-position:-10% -5%,5% 10%,0% 15%;filter:hue-rotate(24deg) brightness(1.02)}
+  100%{background-position:5% 10%,-10% -5%,15% 0%;filter:hue-rotate(48deg) brightness(0.9)}
 }
 @keyframes grid-shift{0%{transform:translate(0,0)}100%{transform:translate(-50%,-50%)}}
 @keyframes aurora-pulse{
@@ -167,7 +175,7 @@ nav.scrolled{
 .chip:hover{border-color:var(--border-hi);color:var(--txt)}
 
 /* ─── PROJECTS ───────────────────────────────────────── */
-#projects{padding:160px 80px;border-top:1px solid var(--border)}
+#projects{padding:160px 80px}
 /* alternating full-width feature rows */
 .proj-list{
   display:flex;flex-direction:column;gap:1px;
@@ -219,7 +227,7 @@ nav.scrolled{
 .proj-link:hover{gap:14px}
 
 /* ─── STACK ──────────────────────────────────────────── */
-#stack{padding:160px 80px;border-top:1px solid var(--border)}
+#stack{padding:160px 80px}
 .stack-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
@@ -240,7 +248,7 @@ nav.scrolled{
 }
 
 /* ─── CONTACT ────────────────────────────────────────── */
-#contact{padding:160px 80px;border-top:1px solid var(--border)}
+#contact{padding:160px 80px}
 .contact-head{
   font-family:var(--serif);font-size:clamp(36px,5.5vw,76px);font-weight:400;
   line-height:1.06;letter-spacing:-0.025em;max-width:800px;margin-bottom:26px;
@@ -250,7 +258,7 @@ nav.scrolled{
 
 /* ─── FOOTER ─────────────────────────────────────────── */
 footer{
-  border-top:1px solid var(--border);padding:24px 80px;
+  padding:24px 80px;
   display:flex;justify-content:space-between;align-items:center;
 }
 footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}

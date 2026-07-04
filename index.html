@@ -66,8 +66,8 @@ nav.scrolled{
 .d1{transition-delay:90ms}.d2{transition-delay:180ms}.d3{transition-delay:270ms}
 
 /* Crisp, aurora-tinted 1px seam at the top of each section (keeps the hard-line aesthetic) */
-#about,#projects,#stack,#contact,footer{position:relative}
-#about::before,#projects::before,#stack::before,#contact::before,footer::before{
+#about,#projects,#stack,#credentials,#contact,footer{position:relative}
+#about::before,#projects::before,#stack::before,#credentials::before,#contact::before,footer::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--seam);
 }
 
@@ -305,6 +305,28 @@ nav.scrolled{
   color:var(--txt-dim);text-align:center;
 }
 
+/* ─── CREDENTIALS ────────────────────────────────────── */
+#credentials{padding:160px 80px}
+.cred-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+}
+.cred-col{background:var(--bg);padding:38px 34px 30px;transition:background 200ms}
+.cred-col:hover{background:var(--s-low)}
+.cred-cat{
+  font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--txt-dim);margin-bottom:22px;display:flex;align-items:center;gap:8px;
+}
+/* the little accent tick borrows the hero-rain blue */
+.cred-cat::before{content:'';width:5px;height:5px;background:#09f;border-radius:50%}
+.cred-item{padding:15px 0;border-bottom:1px solid var(--border)}
+.cred-item:last-child{border-bottom:none}
+.cred-title{display:block;font-size:15px;color:var(--txt);line-height:1.4}
+.cred-meta{
+  display:block;margin-top:5px;font-size:11px;letter-spacing:0.05em;
+  color:var(--txt-dim);
+}
+
 /* ─── CONTACT ────────────────────────────────────────── */
 #contact{padding:160px 80px}
 .contact-head{
@@ -328,7 +350,8 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
   #hero{padding:72px 40px 0}
   #about{padding:120px 40px;grid-template-columns:1fr;gap:32px}
   .about-sticky{position:static;top:auto}
-  #projects,#stack,#contact{padding:120px 40px}
+  #projects,#stack,#credentials,#contact{padding:120px 40px}
+  .cred-grid{grid-template-columns:1fr}
   footer{padding:24px 40px}
   /* stack feature rows: image on top, text below (no zig-zag) */
   .proj-row{grid-template-columns:1fr}
@@ -346,7 +369,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
   .hero-sub{margin-bottom:40px}
   .hero-rule{margin-top:64px}
   .hero-btns{flex-wrap:wrap}
-  #about,#projects,#stack,#contact{padding:88px 22px}
+  #about,#projects,#stack,#credentials,#contact{padding:88px 22px}
   .lbl{margin-bottom:40px}
   .proj-img{min-height:200px}
   .proj-meta{padding:32px 24px}
@@ -368,6 +391,7 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
     <li><a href="#stack">Stack</a></li>
+    <li><a href="#credentials">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -691,6 +715,72 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
     <div class="stack-item"><span class="stack-glyph">Cs</span><span class="stack-name">CSS</span></div>
      <div class="stack-item"><span class="stack-glyph">C</span><span class="stack-name">C</span></div>
      <div class="stack-item"><span class="stack-glyph">Cpp</span><span class="stack-name">C++</span></div>
+  </div>
+</section>
+
+<!-- ── CREDENTIALS ─────────────────────────────────────────── -->
+<!--
+  HOW TO EDIT THIS SECTION
+  ────────────────────────
+  There are three columns: Degrees, Certifications, Papers.
+  To ADD an entry, copy one <div class="cred-item"> ... </div> block
+  and paste it inside the matching column, then edit the two fields:
+      .cred-title  →  the name of the degree / certification / paper
+      .cred-meta   →  the issuer / venue and the year(s)
+  To REMOVE an entry, delete its whole <div class="cred-item"> block.
+  To hide a whole column, delete that entire <div class="cred-col"> block
+  (and change the other columns' grid so it still looks balanced).
+  Note: this section intentionally does NOT show your name anywhere.
+-->
+<section id="credentials">
+  <div class="lbl reveal">Education &amp; Credentials</div>
+  <div class="cred-grid">
+
+    <!-- ══════════ DEGREES ══════════ -->
+    <div class="cred-col reveal">
+      <h3 class="cred-cat">Degrees</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">BSc Computer Science</span>
+        <span class="cred-meta">Your University · 2023 – 2026</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Add another degree here</span>
+        <span class="cred-meta">Institution · Year</span>
+      </div>
+    </div>
+
+    <!-- ══════════ CERTIFICATIONS ══════════ -->
+    <div class="cred-col reveal d1">
+      <h3 class="cred-cat">Certifications</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">Certification Name</span>
+        <span class="cred-meta">Issuing Body · Year</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Another Certification</span>
+        <span class="cred-meta">Issuing Body · Year</span>
+      </div>
+    </div>
+
+    <!-- ══════════ PAPERS ══════════ -->
+    <div class="cred-col reveal d2">
+      <h3 class="cred-cat">Papers</h3>
+
+      <div class="cred-item">
+        <span class="cred-title">Title of the paper or write-up</span>
+        <span class="cred-meta">Venue / Journal · Year</span>
+      </div>
+
+      <div class="cred-item">
+        <span class="cred-title">Another paper title</span>
+        <span class="cred-meta">Venue / Journal · Year</span>
+      </div>
+    </div>
+
   </div>
 </section>
 

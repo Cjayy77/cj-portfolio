@@ -64,6 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .wm-tech{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
 .wm-tech li{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--txt-dim);border:1px solid var(--border);padding:6px 11px}
 .wm-links{display:flex;flex-wrap:wrap;gap:12px}
+.wm-note{font-size:12px;font-style:italic;color:var(--txt-dim)}
 .proj-install{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:280px;margin-bottom:22px;padding:8px 8px 8px 12px;background:var(--s-mid);border:1px solid var(--border);border-radius:4px}
 .proj-install code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .proj-install code::before{content:'$ ';color:var(--txt-dim)}
@@ -158,9 +159,9 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
             <line x1="522" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
           </svg></span></span>
         <span class="work-meta">
-          <span class="work-tag">Electron · WebGL2 · Optical Rendering</span>
+          <span class="work-tag">Electron · WebGL2 · Optics</span>
           <span class="work-name">Device Optical Aid (DOA)</span>
-          <span class="work-desc">Real-time software pre-distortion of the screen using a per-user Point Spread Function model.</span>
+          <span class="work-desc">A real-time desktop optics application I designed and built.</span>
           <span class="work-more">View details →</span>
         </span>
         <template>
@@ -192,12 +193,12 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
             <line x1="522" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="1" marker-end="url(#arr1)"/>
           </svg></div>
       <div class="wm-body">
-        <p class="work-tag">Electron · WebGL2 · Optical Rendering</p>
+        <p class="work-tag">Electron · WebGL2 · Optics</p>
         <h2 class="wm-title">Device Optical Aid (DOA)</h2>
-        <p class="wm-desc">DOA moves optical correction into the display itself. Given a model of an optical system's blur — its Point Spread Function, expressed with Zernike polynomials — it applies the inverse to the rendered image, so that after light passes through that system it resolves closer to the intended result. The correction runs as a WebGL2 fragment-shader pass over the framebuffer on every frame, so it works on live, moving content rather than static test images, and it is wrapped in an Electron app so it can operate as a desktop-level layer. The hard part is doing the per-frame inverse-filtering fast enough to stay real-time while keeping the image stable.</p>
-        <ul class="wm-tech"><li>Electron</li><li>WebGL2</li><li>GLSL fragment shaders</li><li>Zernike-polynomial PSF</li><li>Real-time framebuffer compositing</li></ul>
+        <p class="wm-desc">A commercial desktop optics product I designed and built. Because it is a live product, the technical internals are kept private — I'm happy to walk through the work directly.</p>
+        <ul class="wm-tech"><li>Electron</li><li>WebGL2</li><li>Desktop application</li></ul>
         
-        <div class="wm-links"><a class="btn" href="https://deviceopticalaid.com" target="_blank" rel="noopener">Visit live site ↗</a></div>
+        <p class="wm-note">Commercial product — internals kept private.</p>
       </div></template>
       </div>
 
@@ -500,8 +501,29 @@ footer span{font-size:11px;color:var(--txt-dim);letter-spacing:0.06em}
       </div></template>
       </div>
 
-      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for GeoAttend">
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for Assay">
         <span class="work-rank">05</span>
+        <span class="work-img" style="background:#1a0e0e"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rg7" cx="50%" cy="46%" r="55%"><stop offset="0%" stop-color="#e5484d" stop-opacity="0.16"/><stop offset="100%" stop-color="#e5484d" stop-opacity="0"/></radialGradient></defs><rect width="400" height="225" fill="url(#rg7)"/><g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none"><line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/><line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/></g><path d="M200 34 L252 54 V108 C252 150 228 172 200 188 C172 172 148 150 148 108 V54 Z" stroke="rgba(229,72,77,0.42)" stroke-width="1.5" fill="rgba(229,72,77,0.04)"/><path d="M200 46 L241 62 V107 C241 141 222 160 200 173 C178 160 159 141 159 107 V62 Z" stroke="rgba(229,72,77,0.16)" stroke-width="1" fill="none"/><rect x="181" y="86" width="38" height="34" rx="3" stroke="rgba(240,140,140,0.55)" stroke-width="1" fill="rgba(229,72,77,0.05)"/><g stroke="rgba(240,140,140,0.35)" stroke-width="1"><line x1="181" y1="94" x2="174" y2="94"/><line x1="181" y1="103" x2="174" y2="103"/><line x1="181" y1="112" x2="174" y2="112"/><line x1="219" y1="94" x2="226" y2="94"/><line x1="219" y1="103" x2="226" y2="103"/><line x1="219" y1="112" x2="226" y2="112"/></g><path d="M194 100 v-4 a6 6 0 0 1 12 0 v4" stroke="rgba(255,200,200,0.6)" stroke-width="1.2" fill="none"/><rect x="192" y="100" width="16" height="13" rx="1.5" stroke="rgba(255,200,200,0.6)" stroke-width="1.2" fill="none"/><path d="M182 150 l10 10 l20 -22" stroke="rgba(229,72,77,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g stroke="rgba(229,72,77,0.3)" stroke-width="1" fill="none"><path d="M96 90 a26 26 0 0 1 0 44"/><path d="M84 80 a40 40 0 0 1 0 64"/><path d="M304 90 a26 26 0 0 0 0 44"/><path d="M316 80 a40 40 0 0 0 0 64"/></g><circle cx="96" cy="112" r="3" fill="rgba(229,72,77,0.5)"/><circle cx="304" cy="112" r="3" fill="rgba(229,72,77,0.5)"/></svg></span></span>
+        <span class="work-meta">
+          <span class="work-tag">AppSec · Hardware Attestation · Go</span>
+          <span class="work-name">Assay</span>
+          <span class="work-desc">A hardware-backed attestation approach to macOS anti-cheat — proving integrity instead of hunting for tampering.</span>
+          <span class="work-more">View details →</span>
+        </span>
+        <template>
+      <div class="wm-head" style="background:#1a0e0e"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rg7" cx="50%" cy="46%" r="55%"><stop offset="0%" stop-color="#e5484d" stop-opacity="0.16"/><stop offset="100%" stop-color="#e5484d" stop-opacity="0"/></radialGradient></defs><rect width="400" height="225" fill="url(#rg7)"/><g stroke="rgba(255,255,255,0.05)" stroke-width="0.5" fill="none"><line x1="0" y1="75" x2="400" y2="75"/><line x1="0" y1="150" x2="400" y2="150"/><line x1="133" y1="0" x2="133" y2="225"/><line x1="266" y1="0" x2="266" y2="225"/></g><path d="M200 34 L252 54 V108 C252 150 228 172 200 188 C172 172 148 150 148 108 V54 Z" stroke="rgba(229,72,77,0.42)" stroke-width="1.5" fill="rgba(229,72,77,0.04)"/><path d="M200 46 L241 62 V107 C241 141 222 160 200 173 C178 160 159 141 159 107 V62 Z" stroke="rgba(229,72,77,0.16)" stroke-width="1" fill="none"/><rect x="181" y="86" width="38" height="34" rx="3" stroke="rgba(240,140,140,0.55)" stroke-width="1" fill="rgba(229,72,77,0.05)"/><g stroke="rgba(240,140,140,0.35)" stroke-width="1"><line x1="181" y1="94" x2="174" y2="94"/><line x1="181" y1="103" x2="174" y2="103"/><line x1="181" y1="112" x2="174" y2="112"/><line x1="219" y1="94" x2="226" y2="94"/><line x1="219" y1="103" x2="226" y2="103"/><line x1="219" y1="112" x2="226" y2="112"/></g><path d="M194 100 v-4 a6 6 0 0 1 12 0 v4" stroke="rgba(255,200,200,0.6)" stroke-width="1.2" fill="none"/><rect x="192" y="100" width="16" height="13" rx="1.5" stroke="rgba(255,200,200,0.6)" stroke-width="1.2" fill="none"/><path d="M182 150 l10 10 l20 -22" stroke="rgba(229,72,77,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g stroke="rgba(229,72,77,0.3)" stroke-width="1" fill="none"><path d="M96 90 a26 26 0 0 1 0 44"/><path d="M84 80 a40 40 0 0 1 0 64"/><path d="M304 90 a26 26 0 0 0 0 44"/><path d="M316 80 a40 40 0 0 0 0 64"/></g><circle cx="96" cy="112" r="3" fill="rgba(229,72,77,0.5)"/><circle cx="304" cy="112" r="3" fill="rgba(229,72,77,0.5)"/></svg></div>
+      <div class="wm-body">
+        <p class="work-tag">AppSec · Hardware Attestation · Go</p>
+        <h2 class="wm-title">Assay</h2>
+        <p class="wm-desc">Assay makes the case for replacing kernel-mode (ring-0) anti-cheat on macOS with hardware-backed client attestation. Instead of loading a driver to inspect memory for tampering, it uses Apple's Secure Enclave and App Attest (<code>DCAppAttestService</code>) to cryptographically prove that a specific, unmodified binary is running in a sealed process on genuine Apple hardware — a stronger integrity claim than a kernel driver squinting at memory, and with no ring-0 code on the user's machine. The design covers enrollment that binds keys to hardware, posture reporting (SIP status, debugger presence, code-signature validity), continuous challenge-response re-attestation, and a tiered access policy rather than a binary allow/deny. Current scope is the server-side verifier in Go; the Swift client SDK is deferred pending Apple Silicon hardware and a Developer Program membership. It is framed honestly as an integration project with a thesis — a demonstration of trust-boundary reasoning, not a research contribution.</p>
+        <ul class="wm-tech"><li>Go (verifier)</li><li>Swift / App Attest</li><li>Apple Secure Enclave</li><li>Code-signing & notarization</li><li>Hardened runtime</li><li>Challenge-response attestation</li></ul>
+        
+        <div class="wm-links"><a class="btn" href="https://github.com/Cjayy77/Assay" target="_blank" rel="noopener">View on GitHub ↗</a></div>
+      </div></template>
+      </div>
+
+      <div class="work-card reveal" role="button" tabindex="0" aria-label="Open details for GeoAttend">
+        <span class="work-rank">06</span>
         <span class="work-img" style="background:#120f22"><span class="work-img-inner"><svg width="100%" height="100%" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
